@@ -2,5 +2,18 @@
 name = "ledger"
 version = "0.1.0"
 edition = "2021"
+description = "CLI accounting tool"
+keywords = ["accounting", "finance", "budget"]
+categories = ["command-line-utilities"]
 
 [dependencies]
+serde_yaml = "0.8.21"
+serde = { version = "1.0.130", features = ["derive"] }
+csv = "1.1.6"
+rusty-money = "0.4.1"
+chrono = { version = "0.4.19", features = ["serde"] }
+clap = "2.33.3"
+prettytable-rs = "0.10"
+
+[dev-dependencies]
+assert_cmd = "2.0.0"
