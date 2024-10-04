@@ -25,6 +25,9 @@
 - Dev
     - `https://github.com/assert-rs/assert_cmd`
 
+- Error
+    - `https://github.com/dtolnay/anyhow/`
+
 
 - Visualize
     - `https://github.com/phsym/prettytable-rs`
