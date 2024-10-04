@@ -1,8 +1,8 @@
-# ledger - Ledger in Rust
+# Ledger in Rust
 
 ---
 
 # [Arch](./docs/arch.md)
 # [Features](./docs/feature.md)
-# [Reference](./docs/reference.md)
+# [References](./docs/reference.md)
 # [ToDo](./docs/todo.md)
