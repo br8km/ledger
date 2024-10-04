@@ -1,9 +1,9 @@
 
 # Features
 
-- Command Line Tool With Cross-Platform Support
-- All Language & Currency Support
-- Smart Argument Parsing, No Order
+- Command Line Tool With Cross-Platform Support;
+- All Language & Currency Support;
+- Smart Argument Parsing, No Ordering;
 - Sub-Command: `Help`, `Version`, `Account`, `Balance`, `Month`, `Year`, `Last [N] Days`
 - Remember History of Opened Files, eg: `-file {1,9,etc.}`
 - Custom Color Theme Reporting
