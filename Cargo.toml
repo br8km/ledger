@@ -2,5 +2,17 @@
 name = "ledger"
 version = "0.1.0"
 edition = "2021"
+authors = [
+    "Bright Kim <br8km@hello.world>",
+    "Carlous Bo <ca5bo@hello.world>",
+]
 
 [dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive"] }
+
+
+[dev-dependencies]
+assert_cmd = "2.0.16"
+predicates = "3.1.2"
+assert_fs = "1.1.2"

@@ -15,11 +15,11 @@
         - `--groupby=week`
 
 - Sub-Command.Advanced
-    - period
+    - period ???
         - [first|last]{n}[year|month|week|day]
             - `--year=2024`
             - `--month=202406`
-            - `--week=2`
+            - `--week=20240603`
             - `--day=2`
             - `--recent=week|month|year`
             - `--last=7{d|w|y}` meaning last 7 days
@@ -30,5 +30,4 @@
         - eg: `--file={0-9}`, OR Abbr as: `-f {0-9}`
 
 - Custom Color Theme Pretty Table Reporting;
-- Alert For Over Expense Limit;
 - Support Input File Type: `yaml`;
