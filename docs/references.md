@@ -15,6 +15,8 @@
 
 ### Crates
 
+- `https://lib.rs`
+
 - `https://crates.io/crates/clap-verbosity-flag`
 
 

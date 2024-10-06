@@ -1,9 +1,8 @@
-
 # Arch
 
 ---
 
-### packages
+### Packages
 
 - De|Serialize
     - `https://github.com/serde-rs/serde`
@@ -31,3 +30,4 @@
 
 - Visualize
     - `https://github.com/phsym/prettytable-rs`
+
