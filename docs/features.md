@@ -1,33 +1,34 @@
 
 # Features
 
-- Command Line Tool With Cross-Platform Support;
-- All Language & Currency Support;
-- Smart Argument Parsing, No Ordering;
-- Sub-Command
-    - HELP
-    - VERSION
-    - ACCOUNT
-    - BALANCE
-    - REGISTER
-        - `--groupby=year`
-        - `--groupby=month`
-        - `--groupby=week`
+- Cross-Platform;
+- All Language & Currency;
+- Input File Type: `yaml`;
+- Pretty Reporting;
 
-- Sub-Command.Advanced
-    - period ???
-        - [first|last]{n}[year|month|week|day]
-            - `--year=2024`
-            - `--month=202406`
-            - `--week=20240603`
-            - `--day=2`
-            - `--recent=week|month|year`
-            - `--last=7{d|w|y}` meaning last 7 days
+- Commands
+    - `ACCOUNT`
+    - `BALANCE`
+    - `BUDGET`
+    - `REGISTER`
+    - `FILE`
+        - `path`
+        - `{0-99}` - history.file.index
+    
+- Options
+    - `groupby`
+        - `year`
+        - `month`
+        - `week`
+        - `day`
+    - `recent`
+        - `year={2024}`
+        - `month={8}`
+        - `week={2}`
+        - `day={10}`
+    - `period`
+        - `20240101-20241001`
 
-
-        - [start|end]
-    - history.file.index
-        - eg: `--file={0-9}`, OR Abbr as: `-f {0-9}`
-
-- Custom Color Theme Pretty Table Reporting;
-- Support Input File Type: `yaml`;
+- Options.TODO
+    - `Memory` - history commands
+        - `{0-99}`
