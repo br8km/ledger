@@ -57,3 +57,5 @@ impl LedgerFile {
 // Read FileName in history of commands;
 
 // Write FileName in history of commands;
+
+// Custom color theme settings;

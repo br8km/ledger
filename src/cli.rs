@@ -1,13 +1,10 @@
 #![allow(dead_code)]
 
 // pub mod demo;
-// mod account;
+pub mod account;
 pub mod args;
-// mod balance;
-// mod budget;
-// mod color;
-// pub mod help;
-// mod option;
-// mod register;
+pub mod balance;
+pub mod budget;
+pub mod register;
 
 
