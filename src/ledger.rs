@@ -1,6 +1,7 @@
 #![allow(dead_code, unused_imports)]
 
 
+use serde::{Serialize, Deserialize};
 use chrono::NaiveDate;
 use prettytable::{format, Table};
 use rusty_money::{iso, Money};

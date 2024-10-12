@@ -1,10 +1,28 @@
 
 # Features
 
+---
+
+### Main.Functions
+
+- Check Account File Format, Load Config;
+- Search|List;
+- Statistics|Chart;
+- Interactive;
+- Instant.Autocomplete;
+
+
+### General.Features
+
 - Cross-Platform;
 - All Language & Currency;
 - Input File Type: `yaml`;
 - Pretty Reporting;
+
+
+### Usage 
+
+- Options
 
 - Commands
     - `ACCOUNT`
@@ -13,9 +31,9 @@
     - `REGISTER`
     - `FILE`
         - `path`
-        - `{0-99}` - history.file.index
+        - `{0-9}` - history.file.index
     
-- Options
+- Options - `REGISTER`
     - `groupby`
         - `year`
         - `month`
@@ -30,5 +48,10 @@
         - `20240101-20241001`
 
 - Options.TODO
-    - `Memory` - history commands
-        - `{0-99}`
+    - `history-cmd` - history commands
+        - `{0-9}`
+    - `history-file` - history files
+        - `{0-9}`
+
+- Custom.Options.from.File
+    - `decimal`, default `6`; if crypto, set to `12`

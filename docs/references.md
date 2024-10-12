@@ -21,4 +21,20 @@
 
 
 
+### CMD.Plot
+
+- Fonts
+    - `https://github.com/romkatv/powerlevel10k`
+
+- Ruby
+    - `https://github.com/red-data-tools/YouPlot`
+
+- Golang
+    - `https://github.com/gizak/termui`
+    - `https://github.com/maaslalani/draw`
+
+- Rust
+    - `https://github.com/fdehau/tui-rs`
+    - `https://github.com/mikaelmello/inquire`
+    - `https://github.com/aantn/smag`
 

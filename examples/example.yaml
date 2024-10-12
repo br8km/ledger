@@ -1,4 +1,14 @@
-currency: USD
+configs:
+  - currency: USD
+  - decimal: 6
+  - memory: 9
+  - color:
+    - background: red
+    - front: blue
+  - budget:
+    - alert: 80  # percent
+    - postpone: true
+
 
 accounts:
   - account: asset:cash_checking
