@@ -7,7 +7,7 @@ configs:
     - front: blue
   - budget:
     - alert: 80  # percent
-    - postpone: true
+    - postpone: year  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature
 
 
 accounts:

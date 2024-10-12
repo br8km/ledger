@@ -1,0 +1,9 @@
+{
+  "editor.tabSize": 2,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.fontFamily": "FiraCode Nerd Font",
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontFamily": "'FiraCode Nerd Font', monospace",
+}
