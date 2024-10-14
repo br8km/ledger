@@ -30,4 +30,4 @@
 
 ### Custom.Config
 
-1. Set Session Folder:
+- Check Example `yaml` Template File;

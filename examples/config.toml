@@ -1,0 +1,29 @@
+[config]
+
+decimal = 6
+
+[theme]
+
+name = "dark"
+font = ""
+
+
+[config.budget]
+
+alert = 80
+postpone = true
+
+  # - folder: auto  # default to same as exeutable path;
+
+  # - currency: USD
+  # - decimal: auto  # default to 6 if national currency else 12 for crypto currencies;
+
+  # - theme: dark  # options: `dark`, `light`, etc.;
+
+  # - budget:
+  #   - alert: auto  # percent, default to 80%;
+  #   - postpone: auto  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
+
+[config.session]
+
+max = 10
