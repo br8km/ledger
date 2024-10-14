@@ -1,13 +1,14 @@
 configs:
   - currency: USD
-  - decimal: 6
-  - memory: 9
+  - decimal: auto
+  - session: | auto
+    - folder: auto
   - color:
-    - background: red
-    - front: blue
+    - background: auto
+    - front: auto
   - budget:
-    - alert: 80  # percent
-    - postpone: year  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature
+    - alert: auto  # percent
+    - postpone: auto  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature
 
 
 accounts:

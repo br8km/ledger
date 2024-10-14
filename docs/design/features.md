@@ -40,10 +40,10 @@
         - `week`
         - `day`
     - `recent`
-        - `year={2024}`
-        - `month={8}`
-        - `week={2}`
-        - `day={10}`
+        - `{2}year`
+        - `{3}month`
+        - `{6}week`
+        - `{15}day`
     - `period`
         - `20240101-20241001`
 

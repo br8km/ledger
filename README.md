@@ -2,7 +2,7 @@
 
 ---
 
-- [Arch](./docs/arch.md)
-- [Features](./docs/feature.md)
-- [References](./docs/reference.md)
-- [Todo](./docs/todo.md)
+- [Arch](./docs/design/arch.md)
+- [Features](./docs/design/feature.md)
+- [References](./docs/research/reference.md)
+- [Todo](./docs/design/todo.md)
