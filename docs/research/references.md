@@ -38,3 +38,8 @@
     - `https://github.com/mikaelmello/inquire`
     - `https://github.com/aantn/smag`
 
+
+### Logging
+
+- `https://github.com/rust-lang/log`
+- `https://github.com/slog-rs/slog`

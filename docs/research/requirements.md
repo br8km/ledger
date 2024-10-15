@@ -23,7 +23,8 @@
 1. Statistics: Drawing|Plotting|Graph|Chart;
 2. Export Html Report;
 3. Search Account Name Instant Auto Complete;
-4. Operation Session Management [max=10];
+4. Structured Logging Within Custom Period;
+5. Operation Session Management [max=10];
 
 
 

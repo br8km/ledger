@@ -13,7 +13,7 @@ font = ""
 alert = 80
 postpone = true
 
-  # - folder: auto  # default to same as exeutable path;
+  # - folder: auto  # default to exeutable path/data;
 
   # - currency: USD
   # - decimal: auto  # default to 6 if national currency else 12 for crypto currencies;
