@@ -1,14 +1,14 @@
-[config]
+[decimal]
 
-decimal = 6
+number = 6
 
 [theme]
 
-name = "dark"
+color = "dark"
 font = ""
 
 
-[config.budget]
+[budget]
 
 alert = 80
 postpone = true
@@ -24,6 +24,6 @@ postpone = true
   #   - alert: auto  # percent, default to 80%;
   #   - postpone: auto  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
 
-[config.session]
+[session]
 
 max = 10

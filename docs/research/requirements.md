@@ -22,7 +22,7 @@
 
 1. Statistics: Drawing|Plotting|Graph|Chart;
 2. Export Html Report;
-3. Search Account Name Instant Auto Complete;
+3. [?] Search Account Name Instant Auto Complete;
 4. Structured Logging Within Custom Period;
 5. Operation Session Management [max=10];
 
@@ -41,4 +41,9 @@
 2. Receivables & Payables Module;
 3. Set Budget Amount Postpone On|Off;
 4. Set Budget Notice Message @ %80;
+
+
+
+
+
 

@@ -31,3 +31,13 @@
 ### Custom.Config
 
 - Check Example `yaml` Template File;
+
+
+### Config.Command
+
+- `Config`
+  - `budget.alert`
+  - `budget.postpone`
+  - `theme.font`
+  - `theme.color`
+
