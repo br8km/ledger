@@ -3,7 +3,7 @@
 
 ---
 
-- [ ] Errors, Messages
+- [ ] Error Messages
 - [ ] Parse Arguments
 - [ ] Logging
 - [ ] Load|Save Files

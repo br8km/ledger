@@ -2,16 +2,16 @@
 
 ---
 
-### Basic.Usage
+### Search
 
 
 1. Search Commands:
 
-- `Account`
-- `Balance`
-- `Budget`
-- `Register`
-- `File`, eg: `--file={num}`, means re-use file by session index number In reverse order;
+- `File` OR `Session`, REQUIRED. eg: `--file={num}`, `--session={num}`, means re-use file or session by index number In reverse order;
+- `Account`, Optional;
+- `Balance`, Optional;
+- `Budget`, Optional;
+- `Register`, Optional;
 
 2. Search Options:
 
@@ -19,25 +19,26 @@
 - `Recent` - Optional: `{num}year`, `{num}month`, `{num}week`, `{num}day`, {num} Is number of period;
 - `Period` - Optional: `{yyyy-mm-dd}-{yyyy-mm-dd}`, means `{datetime_start}-{datetime_end}`;
 
-3. Shortcut Options:
-
-- `Session` - Optional, eg: `--session={num}`, means re-run session by index number In Reverse Order;
-
-4. Generate Example `yaml` Accounting Template File:
-
-- `Template` - Optional, eg: `--template={file}`, will create default example file with set file path;
 
 
-### Custom.Config
-
-- Check Example `yaml` Template File;
-
-
-### Config.Command
+### Config
 
 - `Config`
-  - `budget.alert`
-  - `budget.postpone`
-  - `theme.font`
-  - `theme.color`
+  - `budget.alert`, eg: `--budget.alert=80`, options=range(0, 100);
+  - `budget.postpone`, eg: `--budget.postpon=true`, options=[true, false];
+  - `theme.font`, eg: `--theme.font=arial`, should have set font installed first;
+  - `theme.color`, eg: `--theme.color=dark`, options=[dark, light, etc.], should have prepared first;
+  - `generate.example`, eg: `--generate.template={file}`, will create default example file with set file path;
 
+
+### Info
+
+- `List`
+  - `file`, eg: `--file={num}`, extracting history file path from log file, num.max=10, num.default=0, means no limit, example output:
+    0: file_path
+    1: file_path
+    etc.;
+  - `session`, eg: `--session={num}`, extract history session from log file, num.max=10, num.default=0, means no limit, example output:
+    0: {session_0}
+    1: {session_1}
+    etc.;
