@@ -16,7 +16,7 @@
 2. Search Options:
 
 - `Group` - Optional: `year`, `month`, `week`, `day`;
-- `Recent` - Optional: `{num}year`, `{num}month`, `{num}week`, `{num}day`, {num} Is number of period;
+- `Recent` - Optional: `{num}year`, `{num}month`, `{num}week`, `{num}day`, {num} Is number of time frame;
 - `Period` - Optional: `{yyyy-mm-dd}-{yyyy-mm-dd}`, means `{datetime_start}-{datetime_end}`;
 
 
@@ -28,7 +28,7 @@
   - `budget.postpone`, eg: `--budget.postpon=true`, options=[true, false];
   - `theme.font`, eg: `--theme.font=arial`, should have set font installed first;
   - `theme.color`, eg: `--theme.color=dark`, options=[dark, light, etc.], should have prepared first;
-  - `generate.example`, eg: `--generate.template={file}`, will create default example file with set file path;
+  - `generate.example`, eg: `--generate.template={file}`, will create default example file with set file path, auto resolve relative path to executable path;
 
 
 ### Info
