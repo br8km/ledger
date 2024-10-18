@@ -1,22 +1,32 @@
 extern crate thiserror;
 
+use std::io;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum FileError {
 
-    #[error("Invalid File History Index: (expected {expected:?}, got {found:?} )")]
-    FileIndex {
+    #[error("Invalid File History Index {idx}, expected in range[0, {max}]")]
+    FileIndex { idx: usize, max: u8},
+
+    #[error("Invalid Session History Index {idx}, expected in range[0, {max}]")]
+    SessionIndex { idx: usize, max: u8},
+
+    // Valid Config File Type: toml;
+    // Valid Ledger File Type: yaml;
+    #[error("Invalid File Type: (expected {expected:?}, got {found:?})")]
+    FileType {
         expected: String,
         found: String,
     },
 
-    #[error("Invalid File Format: (expected {expected:?} )")]
-    FileFormat {
-        expected: String,
-        // found: String,
-    },
+    #[error("File Path Error")]
+    FilePath(#[from] io::Error),
     
+    // config, currency, accounts, transactions parsing errors;
+    #[error("File Format Error: {0}")]
+    FileFormat(String),
+
     #[error("Unknown File Error")]
     Unknown,
 
@@ -26,8 +36,21 @@ pub enum FileError {
 #[derive(Error, Debug)]
 pub enum ArgumentError {
 
-    #[error("Bad Argument Usage: {0}")]
-    BadArgs(String),
+    #[error("Invalid Argument: {0}")]
+    InvalidArgument(String),
+
+    #[error("Missing Argument: {0}")]
+    MissingArgument(String),
+
+    #[error("Argument Usage Error: (expected {expected:?}, got {found:?} )")]
+    SyntaxError {
+        expected: String,
+        found: String,
+    },
+
+    #[error("Unknown Argument Error")]
+    Unknown,
+
 }
 
 /*

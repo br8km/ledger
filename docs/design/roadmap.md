@@ -5,9 +5,9 @@
 
 - [ ] Error Messages
 - [ ] Parse Arguments
-- [ ] Logging
 - [ ] Load|Save Files
-- [ ] Parse Datetime
+- [ ] Logging
+- [ ] Parse Currency, Accounts, Datetime
 - [ ] Gather Transactions
 - [ ] Plotting
 - [ ] Colors
