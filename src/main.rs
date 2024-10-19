@@ -1,5 +1,22 @@
-pub mod errors;
+
+
+extern crate clap;
+
+use clap::Parser;
+
+use log::{info, trace, warn};
+
+pub mod cli;
+
+
 
 fn main() {
-    println!("Hello From Ledger!")
+    let arguments = cli::args::LedgerArgs::parse();
+
+    trace!("Commencing yak shaving...");
+    warn!("Unable to locate a razor: retrying");
+    info!("Razor located: ok.");
+
+    println!("{:?}", arguments);
+
 }

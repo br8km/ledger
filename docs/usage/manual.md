@@ -7,7 +7,7 @@
 
 1. Search Commands:
 
-- `File` OR `Session`, REQUIRED. eg: `--file={num}`, `--session={num}`, means re-use file or session by index number In reverse order;
+- `File`, Optional. eg: `--file={num}` means re-use file by index number In reverse order; or `--file={file_path}` directly;
 - `Account`, Optional;
 - `Balance`, Optional;
 - `Budget`, Optional;
@@ -16,29 +16,22 @@
 2. Search Options:
 
 - `Group` - Optional: `year`, `month`, `week`, `day`;
-- `Recent` - Optional: `{num}year`, `{num}month`, `{num}week`, `{num}day`, {num} Is number of time frame;
+- `Recent` - Optional: `{num}year`, `{num}month`, `{num}week`, `{num}day`, {num} Is number of time frame, default|minimum to num=1;
 - `Period` - Optional: `{yyyy-mm-dd}-{yyyy-mm-dd}`, means `{datetime_start}-{datetime_end}`;
 
-
-
-### Config
-
-- `Config`
-  - `budget.alert`, eg: `--budget.alert=80`, options=range(0, 100);
-  - `budget.postpone`, eg: `--budget.postpon=true`, options=[true, false];
-  - `theme.font`, eg: `--theme.font=arial`, should have set font installed first;
-  - `theme.color`, eg: `--theme.color=dark`, options=[dark, light, etc.], should have prepared first;
-  - `generate.example`, eg: `--generate.template={file}`, will create default example file with set file path, auto resolve relative path to executable path;
 
 
 ### Info
 
 - `List`
-  - `file`, eg: `--file={num}`, extracting history file path from log file, num.max=10, num.default=0, means no limit, example output:
-    0: file_path
-    1: file_path
-    etc.;
-  - `session`, eg: `--session={num}`, extract history session from log file, num.max=10, num.default=0, means no limit, example output:
-    0: {session_0}
-    1: {session_1}
-    etc.;
+  - Extracting list of different history file path from log file, maximum limit to 10, display in reverse time order;
+    0: latest_used_time: file_path
+    1: latest_used_time: file_path
+    2: latest_used_time: file_path
+    3: latest_used_time: file_path
+    . . . . . . 
+    9: latest_used_time: file_path
+
+
+- `Example`
+  - `file`, eg: `file={file_path}`, will create default example file with defined file path, or to executable path if this argument not present, eg: `<ledger.exe path>/example.yaml`;

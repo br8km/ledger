@@ -42,4 +42,17 @@
 ### Logging
 
 - `https://github.com/rust-lang/log`
-- `https://github.com/slog-rs/slog`
+
+- Simple
+    - `https://github.com/Drakulix/simplelog.rs`
+    - `https://github.com/rbatis/fast_log`
+
+- Complex
+    - `https://github.com/tokio-rs/tracing`
+    - `https://github.com/slog-rs/slog`
+
+
+### Clap.Tutorial
+
+- `https://docs.rs/clap/latest/clap/`
+- `https://www.youtube.com/watch?v=fD9ptABVQbI`

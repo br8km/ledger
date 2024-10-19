@@ -18,6 +18,7 @@
 - All Language & Currency;
 - Input File Type: `yaml`;
 - Pretty Reporting;
+- Pretty Logging;
 
 
 ### Usage 
