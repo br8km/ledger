@@ -1,4 +1,4 @@
-# Ledger in Rust
+# Ledger In Rust
 
 ---
 

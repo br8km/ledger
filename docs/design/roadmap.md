@@ -5,8 +5,8 @@
 
 - [x] Error Messages
 - [-] Parse Arguments
-- [?] Logging, Regex Parsing -> Datetime
-- [ ] Load|Save Files
+- [x] Logging, Regex Parsing, Filtering, Reverse Ordering
+- [ ] Read Yaml File
 - [ ] Parse Currency, Accounts, Datetime
 - [ ] Gather Transactions
 - [ ] Plotting

@@ -10,13 +10,16 @@ pub mod cli;
 pub mod logger;
 
 
-// #[macro_use] extern crate log;
+#[macro_use] extern crate log;
 
 
 use {
     once_cell::sync::Lazy,
     regex::Regex,
 };
+
+
+
 
 fn some_helper_function(haystack: &str) -> bool {
     static RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"...").unwrap());
@@ -28,6 +31,18 @@ fn main() {
     assert!(!some_helper_function("ac"));
     assert!(some_helper_function("xbc"));
     assert!(!some_helper_function("xc"));
+
+    logger::init();
+    info!("file_path_x");
+    
+    let records = logger::parsing();
+    println!("{}", records.len());
+    let filtered = logger::filtering(records);
+    println!("{}", filtered.len());
+    for record in filtered.iter() {
+        println!("{0}, {1}", record.timestamp, record.filepath);
+    }
+
 }
 
 

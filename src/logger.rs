@@ -1,62 +1,91 @@
 extern crate simplelog;
 extern crate time;
 
-
 use simplelog::*;
 
-use std::fs::File;
+use std::{fs, fs::File, io::Read};
+// use std::str::FromStr;
 
 use time::macros::format_description;
 use std::{thread, time::Duration};
+use core::cmp::Ordering;
+use std::cmp::Reverse;
+
+use {
+    once_cell::sync::Lazy,
+    regex::Regex,
+};
 
 
+const LOG_FILE: &'static str = "ledger.log";
+// const TIME_FORMAT: &'static str = "[unix_timestamp] - [year]-[month]-[day] [hour]:[minute]:[second]";
+const LOG_LIMIT: usize = 10;
+
+
+#[derive(Debug, PartialEq, PartialOrd, Eq, Ord, Clone)]
 pub struct Record {
-  timestamp: u32,
-  datetime: String,
-  file: String,
+  pub timestamp: u32,
+  pub datetime: String,
+  pub filepath: String,
 }
 
 
 pub fn init () {
 
-  let file_name = String::from("ledger.log");
+  let config = ConfigBuilder::new()
+    .set_time_format_custom(
+      format_description!(
+        version = 2,
+        "[unix_timestamp] - [year]-[month]-[day] [hour]:[minute]:[second]"
+    ))
+    .build();
 
-    let config = ConfigBuilder::new()
-        .set_time_format_custom(format_description!(
-            version = 2,
-            "[unix_timestamp] - [year]-[month]-[day] [hour]:[minute]:[second]"
-        ))
-        .build();
+  let file = File::options().append(true).open(LOG_FILE).unwrap();
 
-    let file = File::options().append(true).open(file_name).unwrap();
-
-    CombinedLogger::init(
-        vec![
-            TermLogger::new(LevelFilter::Trace, config.clone(), TerminalMode::Mixed, ColorChoice::Auto),
-            WriteLogger::new(LevelFilter::Trace, config.clone(),  file),
-        ]
-    ).unwrap();
+  CombinedLogger::init(
+  vec![
+      TermLogger::new(LevelFilter::Trace, config.clone(), TerminalMode::Mixed, ColorChoice::Auto),
+      WriteLogger::new(LevelFilter::Trace, config.clone(),  file),
+    ]
+  ).unwrap();
 
 }
 
 
-pub fn load(_file_name: String) {
-  panic!("not implement yet.")
+pub fn parsing  () -> Vec<Record> {
+  let mut records: Vec<Record> = vec![];
+
+  let hay  = fs::read_to_string(LOG_FILE).unwrap();
+
+  let re: Regex = Regex::new(r"(\d{10}) - (\d{4}-\d{2}-\d{2} \d{2}\:\d{2}\:\d{2}) \[INFO\] (\S+)").unwrap();
+  // let hay  = "1729433684 - 2024-10-20 14:14:442135376 [INFO] file=file_path_example".to_owned();
+
+  for (_, [timestamp, datetime, filepath]) in re.captures_iter(&hay).map(|c| c.extract()) {
+    records.push(
+      Record {
+        timestamp: timestamp.parse::<u32>().unwrap(),
+        datetime: datetime.to_owned(), 
+        filepath: filepath.to_owned() 
+      }
+    );
+    };
+
+  records
+
 }
 
-
-pub fn parse (_line: &str) -> Record {
-  Record{
-    timestamp:12345, 
-    datetime:String::from("yyyy-mm-dd hh:MM::ss"),
-    file:String::from("file.log"),
+pub fn filtering (mut records: Vec<Record>) -> Vec<Record> {
+  // let records = records.sort_by_key(|r| r.timestamp);
+  records.sort_by_key(|r| (Reverse(r.filepath.clone()), Reverse(r.timestamp.clone())));
+  let mut results: Vec<Record> = vec![];
+  let mut fps: Vec<String> = vec![];
+  for record in records.iter() {
+    if !results.contains(&record) && !fps.contains(&record.filepath) && results.len() < LOG_LIMIT {
+      fps.push(record.filepath.clone());
+      results.push(record.clone());
+    }
   }
-}
 
-pub fn parsing (_lines: Vec<String>) -> Vec<Record> {
-  panic!("not implement yet.")
-}
+  results
 
-  // pub fn filter_and_ordering (messages: Vec![LogMessage]) -> Vec![LogMessage] {
-  //   Vec![]
-  // }
+}
