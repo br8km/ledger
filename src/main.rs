@@ -6,8 +6,8 @@
 // use clap::Parser;
 
 
-// pub mod cli;
-// use cli::logger;
+pub mod cli;
+use cli::logger;
 
 // #[macro_use] extern crate log;
 

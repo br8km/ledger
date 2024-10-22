@@ -1,5 +1,3 @@
-
-
 extern crate simplelog;
 extern crate time;
 
@@ -12,22 +10,21 @@ use time::macros::format_description;
 use std::{thread, time::Duration};
 
 
-pub struct LogMessage {
+pub struct Record {
   timestamp: u32,
   datetime: String,
   file: String,
 }
 
 
-pub fn init (file_name: String) {
+pub fn init () {
+
+  let file_name = String::from("ledger.log");
 
     let config = ConfigBuilder::new()
         .set_time_format_custom(format_description!(
             version = 2,
-            // self.time_format,
-            // ""
-            // self.time_format
-            "[unix_timestamp] - [year]-[month]-[day] [hour]:[minute]:[second][subsecond]"
+            "[unix_timestamp] - [year]-[month]-[day] [hour]:[minute]:[second]"
         ))
         .build();
 
@@ -48,7 +45,7 @@ pub fn load(_file_name: String) {
 }
 
 
-pub fn parse (_line: &str) -> LogMessage {
+pub fn parse (_line: &str) -> Record {
   LogMessage{
     timestamp:12345, 
     datetime:String::from("yyyy-mm-dd hh:MM::ss"),
@@ -56,7 +53,7 @@ pub fn parse (_line: &str) -> LogMessage {
   }
 }
 
-pub fn parsing (_lines: Vec<String>) -> Vec<LogMessage> {
+pub fn parsing (_lines: Vec<String>) -> Vec<Record> {
   panic!("not implement yet.")
 }
 

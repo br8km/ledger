@@ -74,7 +74,30 @@ pub struct AdvancedArgs {
 }
 
 
-pub fn resolve_file_path() {
-    // / resolve file path even its a number for history index;
+#[derive(Clone, Debug)]
+pub enum TimeUnit {
+    Year,
+    Month,
+    Week,
+    Day,
+}
 
+
+#[derive(Clone, Debug)]
+pub struct Group {
+    num: u8,
+    unit: TimeUnit,
+}
+
+
+#[derive(Clone, Debug)]
+pub struct Recent {
+    num: u8,
+    unit: TimeUnit,
+}
+
+#[derive(Clone)]
+pub struct Period {
+    start: String,
+    end: String,
 }
