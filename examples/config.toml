@@ -1,17 +1,8 @@
-[decimal]
-
-number = 6
-
-[theme]
-
-color = "dark"
-font = ""
-
-
-[budget]
-
-alert = 80
-postpone = true
+decimal = 6
+history = 10
+theme = "dark"
+budget_alert = 80
+budget_postpone = true
 
   # - folder: auto  # default to exeutable path/data;
 
@@ -23,7 +14,3 @@ postpone = true
   # - budget:
   #   - alert: auto  # percent, default to 80%;
   #   - postpone: auto  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
-
-[session]
-
-max = 10
