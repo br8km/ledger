@@ -7,7 +7,8 @@
 
 
 pub mod cli;
-use cli::logger;
+pub mod logger;
+
 
 // #[macro_use] extern crate log;
 

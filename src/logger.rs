@@ -46,7 +46,7 @@ pub fn load(_file_name: String) {
 
 
 pub fn parse (_line: &str) -> Record {
-  LogMessage{
+  Record{
     timestamp:12345, 
     datetime:String::from("yyyy-mm-dd hh:MM::ss"),
     file:String::from("file.log"),
