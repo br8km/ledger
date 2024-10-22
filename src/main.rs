@@ -1,6 +1,7 @@
 #![allow(unused_imports, dead_code)]
 #![forbid(unsafe_code)]
 
+#[macro_use] extern crate log;
 // extern crate clap;
 
 // use clap::Parser;
@@ -10,7 +11,6 @@ pub mod cli;
 pub mod logger;
 
 
-#[macro_use] extern crate log;
 
 
 use {
