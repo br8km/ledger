@@ -1,16 +1,6 @@
-decimal = 6
-history = 10
-theme = "dark"
-budget_alert = 80
-budget_postpone = true
-
-  # - folder: auto  # default to exeutable path/data;
-
-  # - currency: USD
-  # - decimal: auto  # default to 6 if national currency else 12 for crypto currencies;
-
-  # - theme: dark  # options: `dark`, `light`, etc.;
-
-  # - budget:
-  #   - alert: auto  # percent, default to 80%;
-  #   - postpone: auto  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
+decimal_number = 6  # default to 6 otherwise 12 for crypto;
+theme_color = "dark"  # options: `dark`, `light`, etc.;
+budget_alert = 80  # percent, default to 80%;
+budget_postpone = true  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
+log_file = "ledger.log"
+history_limit = 10

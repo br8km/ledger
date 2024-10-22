@@ -9,6 +9,7 @@
 
 pub mod cli;
 pub mod logger;
+pub mod cfg;
 
 
 
@@ -37,7 +38,7 @@ fn main() {
     
     let records = logger::parsing();
     println!("{}", records.len());
-    let filtered = logger::filtering(records);
+    let filtered = logger::filtering(records, 10);
     println!("{}", filtered.len());
     for record in filtered.iter() {
         println!("{0}, {1}", record.timestamp, record.filepath);

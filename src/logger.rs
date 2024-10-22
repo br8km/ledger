@@ -74,13 +74,13 @@ pub fn parsing  () -> Vec<Record> {
 
 }
 
-pub fn filtering (mut records: Vec<Record>) -> Vec<Record> {
+pub fn filtering (mut records: Vec<Record>, limit: usize) -> Vec<Record> {
   // let records = records.sort_by_key(|r| r.timestamp);
   records.sort_by_key(|r| (Reverse(r.filepath.clone()), Reverse(r.timestamp.clone())));
   let mut results: Vec<Record> = vec![];
   let mut fps: Vec<String> = vec![];
   for record in records.iter() {
-    if !results.contains(&record) && !fps.contains(&record.filepath) && results.len() < LOG_LIMIT {
+    if !results.contains(&record) && !fps.contains(&record.filepath) && results.len() < limit {
       fps.push(record.filepath.clone());
       results.push(record.clone());
     }
