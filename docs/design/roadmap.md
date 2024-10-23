@@ -9,7 +9,7 @@
 - [x] Read Yaml File
 - [x] Parse Currency, Accounts, Datetime
 - [x] Flattern Transaction Records
-- [ ] Process Commands
+- [ ] Process Commands With Options
 - [ ] Plotting
 - [ ] Colors
 - [ ] Receivables & Payables Module

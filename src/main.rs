@@ -1,11 +1,14 @@
 // #![allow(unused_imports, dead_code)]
 // #![forbid(unsafe_code)]
 
+extern crate serde_yaml;
+
 use ledger::LedgerFile;
 
 pub mod ledger;
-pub mod logger;
+pub mod args;
 pub mod errors;
+pub mod logger;
 
 use crate::errors::Result;
 
@@ -23,6 +26,8 @@ fn main() -> Result<()> {
 
     let record = &ledger.transactions[0].records[0];
     println!("{:?}\n", record);
+
+    // parse command args & options
 
     Ok(())
 

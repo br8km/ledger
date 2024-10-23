@@ -23,8 +23,8 @@
 
 ### Info
 
-- `List`
-  - Extracting list of different history file path from log file, maximum limit to 10, display in reverse time order;
+- `History`
+  - Extracting list history files from log file, maximum limit to 10, display in reverse time order;
     0: latest_used_time: file_path
     1: latest_used_time: file_path
     2: latest_used_time: file_path
@@ -34,4 +34,4 @@
 
 
 - `Example`
-  - `file`, eg: `file={file_path}`, will create default example file with defined file path, or to executable path if this argument not present, eg: `<ledger.exe path>/example.yaml`;
+  - `outfile`, eg: `outfile={file_path}`, will create default example file with defined file path, or to executable path if this argument not present, eg: `<ledger.exe path>/example.yaml`;

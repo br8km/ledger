@@ -1,8 +1,12 @@
 #!allow[unused_imports, dead_code]
 
+use log::info;
 use chrono::NaiveDate;
 use serde::{Serialize, Deserialize};
+
+use crate::{args::{AdvancedArgs, BasicArgs}, logger};
 // use rusty_money::{iso, Money};
+
 
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
@@ -121,4 +125,92 @@ impl LedgerFile {
       records
   }
 
+  pub fn print_account (_args: &BasicArgs) {
+
+  }
+
+
+  pub fn print_balance (args: &AdvancedArgs) {
+
+
+    // everything done, get filepath logged here
+    logger::init();
+    info!("{0}", args.file);
+  }
+
+
+  pub fn print_budget (args: &AdvancedArgs) {
+
+
+    // everything done, get filepath logged here
+    logger::init();
+    info!("{0}", args.file);
+  }
+
+
+  /// print out register
+  pub fn print_register (args: AdvancedArgs) {
+
+
+    // process register filtering logic
+
+
+    // everything done, get filepath logged here
+    logger::init();
+    info!("{0}", args.file);
+
+  }
+
+  /// print out de-duplicated file history
+  pub fn print_history() {
+    logger::init();
+    let entries = logger::parsing();
+    let entries = logger::filtering(entries);
+    // for entry in entries {
+    //   println!("{0} - {1}", entry.datetime, entry.filepath)
+    // }
+    for index in 0..entries.len() {
+      let entry = &entries[index];
+      println!("<{0}> {1} - {2}", index, entry.datetime, entry.filepath)
+    }
+
+  }
+
+
+  /// generate example.yaml file
+  pub fn generate_example(_outfile: &str) {
+
+  }
+
+
+
+  /// parse filepath if file argument is file index number
+  pub fn parse_filepath_from_index_number () -> String {
+    panic!("not yet.")
+  }
+
+
+  /// validate filepath exists
+  pub fn validate_filepath_exists(_filepath: &str) -> bool {
+    true
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+

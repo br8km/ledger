@@ -27,13 +27,13 @@ pub enum Command {
     Balance(AdvancedArgs),
 
     /// show budget of accounts
-    Budget(BasicArgs),
+    Budget(AdvancedArgs),
 
     /// show registers by option of group|recent|period;
     Register(AdvancedArgs),
 
-    /// list deduplicated history files, in reverse order;
-    List,
+    /// list de-duplicated history files, in reverse order;
+    History,
 
     /// generate example ledger file in define path;
     Example(BasicArgs),
@@ -49,7 +49,7 @@ pub struct  BasicArgs {
 
   /// file path or history index;
   #[arg(short, long)]
-  file: String,
+  pub file: String,
 }
 
 
@@ -60,16 +60,16 @@ pub struct AdvancedArgs {
 
   /// file path or history index;
   #[arg(short, long)]
-  file: String,
+  pub file: String,
 
   /// group options, eg: {num}year|month|week|day;
-  group: Option<String>,
+  pub group: Option<String>,
 
   /// recent options, eg: {num}year|month|week|day;
-  recent: Option<String>,
+  pub recent: Option<String>,
 
   /// period options, eg: {yyyy-mm-dd}-{yyyy-mm-dd}
-  period: Option<String>,
+  pub period: Option<String>,
 
 }
 
@@ -101,3 +101,7 @@ pub struct Period {
     start: String,
     end: String,
 }
+
+
+
+
