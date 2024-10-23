@@ -3,16 +3,13 @@ configs:
   - currency: USD
   - decimal_places: 6  # default to 6 if national currency else 12 for crypto currencies, in case f64 errors;
 
-  - theme: 
-    - color: dark  # options: `dark`, `light`, etc.;
-    - font: arial  # should have set font installed first, otherwise will not take effect;
+  - theme_color: "dark"  # options: `dark`, `light`, etc.;
+  - theme_font: arial  # should have set font installed first, otherwise will not take effect;
 
-  - budget:
-    - alert: 80  # percent for alert threshold, default to 80%, options=range(0, 100);
-    - postpone: false  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
-  - log:
-    - file_name: "ledger.log"
-    - history_limit: 10
+  - budget_alert: 80  # percent for alert threshold, default to 80%, options=range(0, 100);
+  - budget_postpone: false  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
+  - log_file: "ledger.log"
+  - history_limit: 10  #  file history limit
 
 
 

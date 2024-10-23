@@ -1,25 +1,22 @@
 #![allow(unused_imports, dead_code)]
 #![forbid(unsafe_code)]
 
+use std::fs;
+
+use ledger::LedgerFile;
+
 pub mod ledger;
+
 
 
 fn main() {
 
+    let filepath = String::from("ledger.yaml");
+    let yaml = fs::read_to_string(filepath).unwrap(); 
+    let ledger: LedgerFile = serde_yaml::from_str(&yaml)?;
 
+    println!("{:?}", ledger);
 
 }
 
-
-fn read(filepath: &str) -> Result<(), serde_yaml::Error> {
-
-    let point = Point { x: 1.0, y: 2.0 };
-
-    let yaml = serde_yaml::to_string(&point)?;
-    assert_eq!(yaml, "x: 1.0\ny: 2.0\n");
-
-    let deserialized_point: Point = serde_yaml::from_str(&yaml)?;
-    assert_eq!(point, deserialized_point);
-    Ok(())
-}
 

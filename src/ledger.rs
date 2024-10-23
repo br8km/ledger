@@ -2,10 +2,11 @@
 
 use chrono::{NaiveDate, NaiveDateTime};
 use serde::{Serialize, Deserialize};
+use rusty_money::{iso, Money};
 
 
-#[derive(Debug, PartialEq, Serialize, Deserialize)]
-pub struct Config {
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
+pub struct Configs {
 
   currency: String,
   decimal_places: u8,
@@ -17,18 +18,20 @@ pub struct Config {
   budget_postpone: bool,
 
   log_file: String,
-  log_limit: usize
+  history_limit: usize
 
 }
 
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct Account {
-  name: String,
+  account: String,
   amount: f64,
   budget_month: Option<f64>,
   budget_year: Option<f64>
 }
 
 
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct Transaction {
   date: NaiveDate,
   amount: f64,
@@ -37,7 +40,12 @@ pub struct Transaction {
   account_to: String
 }
 
-
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
+pub struct LedgerFile {
+    pub config: Config,
+    pub accounts: Vec<Account>,
+    pub transactions: Vec<Transaction>,
+}
 
 
 impl Config {
