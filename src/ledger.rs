@@ -1,9 +1,10 @@
 #!allow[unused_imports, dead_code]
 
 use chrono::{NaiveDate, NaiveDateTime};
+use serde::{Serialize, Deserialize};
 
 
-
+#[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct Config {
 
   currency: String,
