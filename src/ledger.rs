@@ -17,9 +17,6 @@ pub struct Config {
   budget_alert: u8,
   budget_postpone: bool,
 
-  file_log: String,
-  file_limit: usize
-
 }
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
@@ -52,7 +49,7 @@ pub struct CertainRecord {
 pub struct Transaction {
   date: NaiveDate,
   description: String,
-  records: Vec<Record>
+  pub records: Vec<Record>
 }
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
@@ -71,8 +68,6 @@ impl Config {
       decimal_places: 6,
       theme_color: String::from("dark"),
       theme_font: String::from("arial"),
-      file_log: String::from("ledger.log"),
-      file_limit: 10,
       budget_alert: 80,
       budget_postpone: false,
     }
