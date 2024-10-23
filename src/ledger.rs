@@ -125,8 +125,11 @@ impl LedgerFile {
       records
   }
 
-  pub fn print_account (_args: &BasicArgs) {
+  pub fn print_account (args: &BasicArgs) {
 
+    // everything done, get filepath logged here
+    logger::init();
+    info!("{0}", args.file);
   }
 
 
