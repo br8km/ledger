@@ -6,7 +6,7 @@
 - [x] Error Messages
 - [-] Parse Arguments
 - [x] Logging, Regex Parsing, Filtering, Reverse Ordering
-- [ ] Read Toml, Yaml File
+- [ ] Read Yaml File
 - [ ] Parse Currency, Accounts, Datetime
 - [ ] Gather Transactions
 - [ ] Plotting

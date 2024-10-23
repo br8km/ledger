@@ -33,15 +33,16 @@ fn main() {
     assert!(some_helper_function("xbc"));
     assert!(!some_helper_function("xc"));
 
-    logger::init();
+    let file_log = String::from("ledger.log");
+    logger::init(&file_log);
     info!("file_path_x");
     
-    let records = logger::parsing();
-    println!("{}", records.len());
-    let filtered = logger::filtering(records, 10);
+    let entries = logger::parsing(&file_log);
+    println!("{}", entries.len());
+    let filtered = logger::filtering(entries, 10);
     println!("{}", filtered.len());
-    for record in filtered.iter() {
-        println!("{0}, {1}", record.timestamp, record.filepath);
+    for entry in filtered.iter() {
+        println!("{0}, {1}", entry.timestamp, entry.filepath);
     }
 
 }

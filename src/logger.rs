@@ -17,20 +17,20 @@ use {
 };
 
 
-const LOG_FILE: &'static str = "ledger.log";
+// const LOG_FILE: &'static str = "ledger.log";
 // const TIME_FORMAT: &'static str = "[unix_timestamp] - [year]-[month]-[day] [hour]:[minute]:[second]";
-const LOG_LIMIT: usize = 10;
+// const LOG_LIMIT: usize = 10;
 
 
 #[derive(Debug, PartialEq, PartialOrd, Eq, Ord, Clone)]
-pub struct Record {
+pub struct LogEntry {
   pub timestamp: u32,
   pub datetime: String,
   pub filepath: String,
 }
 
 
-pub fn init () {
+pub fn init (file_path: &str) {
 
   let config = ConfigBuilder::new()
     .set_time_format_custom(
@@ -40,7 +40,7 @@ pub fn init () {
     ))
     .build();
 
-  let file = File::options().append(true).open(LOG_FILE).unwrap();
+  let file = File::options().append(true).open(file_path).unwrap();
 
   CombinedLogger::init(
   vec![
@@ -52,17 +52,17 @@ pub fn init () {
 }
 
 
-pub fn parsing  () -> Vec<Record> {
-  let mut records: Vec<Record> = vec![];
+pub fn parsing  (file_path: &str) -> Vec<LogEntry> {
+  let mut entries: Vec<LogEntry> = vec![];
 
-  let hay  = fs::read_to_string(LOG_FILE).unwrap();
+  let hay  = fs::read_to_string(file_path).unwrap();
 
   let re: Regex = Regex::new(r"(\d{10}) - (\d{4}-\d{2}-\d{2} \d{2}\:\d{2}\:\d{2}) \[INFO\] (\S+)").unwrap();
   // let hay  = "1729433684 - 2024-10-20 14:14:442135376 [INFO] file=file_path_example".to_owned();
 
   for (_, [timestamp, datetime, filepath]) in re.captures_iter(&hay).map(|c| c.extract()) {
-    records.push(
-      Record {
+    entries.push(
+      LogEntry {
         timestamp: timestamp.parse::<u32>().unwrap(),
         datetime: datetime.to_owned(), 
         filepath: filepath.to_owned() 
@@ -70,19 +70,18 @@ pub fn parsing  () -> Vec<Record> {
     );
     };
 
-  records
+  entries
 
 }
 
-pub fn filtering (mut records: Vec<Record>, limit: usize) -> Vec<Record> {
-  // let records = records.sort_by_key(|r| r.timestamp);
-  records.sort_by_key(|r| (Reverse(r.filepath.clone()), Reverse(r.timestamp.clone())));
-  let mut results: Vec<Record> = vec![];
+pub fn filtering (mut entries: Vec<LogEntry>, limit: usize) -> Vec<LogEntry> {
+  entries.sort_by_key(|r| (Reverse(r.filepath.clone()), Reverse(r.timestamp.clone())));
+  let mut results: Vec<LogEntry> = vec![];
   let mut fps: Vec<String> = vec![];
-  for record in records.iter() {
-    if !results.contains(&record) && !fps.contains(&record.filepath) && results.len() < limit {
-      fps.push(record.filepath.clone());
-      results.push(record.clone());
+  for entry in entries.iter() {
+    if !results.contains(&entry) && !fps.contains(&entry.filepath) && results.len() < limit {
+      fps.push(entry.filepath.clone());
+      results.push(entry.clone());
     }
   }
 
