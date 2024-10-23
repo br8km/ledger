@@ -1,12 +1,12 @@
 #!allow[unused_imports, dead_code]
 
-use chrono::{NaiveDate, NaiveDateTime};
+use chrono::NaiveDate;
 use serde::{Serialize, Deserialize};
-use rusty_money::{iso, Money};
+// use rusty_money::{iso, Money};
 
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
-pub struct Configs {
+pub struct Config {
 
   currency: String,
   decimal_places: u8,
@@ -17,27 +17,42 @@ pub struct Configs {
   budget_alert: u8,
   budget_postpone: bool,
 
-  log_file: String,
-  history_limit: usize
+  file_log: String,
+  file_limit: usize
 
 }
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct Account {
-  account: String,
+  account: String,  // account name
   amount: f64,
   budget_month: Option<f64>,
   budget_year: Option<f64>
 }
 
 
+
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
+pub struct Record {
+  amount: f64,
+  account: String,
+}
+
+
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
+pub struct CertainRecord {
+  amount: f64,
+  account: String,
+  date: NaiveDate,
+  description: String
+}
+
+
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct Transaction {
   date: NaiveDate,
-  amount: f64,
   description: String,
-  account_from: String,
-  account_to: String
+  records: Vec<Record>
 }
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
@@ -56,19 +71,59 @@ impl Config {
       decimal_places: 6,
       theme_color: String::from("dark"),
       theme_font: String::from("arial"),
-      log_file: String::from("ledger.log"),
-      log_limit: 10,
+      file_log: String::from("ledger.log"),
+      file_limit: 10,
       budget_alert: 80,
       budget_postpone: false,
     }
   }
 
-  pub fn read_config (_file_path: &str) -> Config {
-    Config::new()
+}
+
+impl LedgerFile {
+
+  pub fn get_currency(&self) -> &'static rusty_money::iso::Currency {
+    let c = &self.config.currency;
+
+    match rusty_money::iso::find(c) {
+        Some(n) => n,
+        None => rusty_money::iso::USD,
+    }
+  }
+  
+  /// check records for transaction error
+  pub fn check_records(self) -> bool {
+    for t in self.transactions {
+      let mut total = 0.0;
+      for r in t.records {
+        total += r.amount;
+      }
+      if total != 0.0 {
+        return false
+      }
+    }
+    return true
   }
 
-  pub fn write_config (_config: &Config, _file_path: &str) -> bool {
-    true
+  /// flatten abbreviated and detailed `LedgerFile` transactions into
+  /// a Vec containing individual detailed transactions.
+  /// all downstream logic expects this data structure.
+  pub fn flatten_records(self) -> Vec<CertainRecord> {
+      let mut records: Vec<CertainRecord> = Vec::new();
+
+      for t in self.transactions {
+        for r in t.records {
+          let record = CertainRecord{
+            date: t.date.clone(),
+            amount: r.amount.clone(),
+            account: r.account.clone(),
+            description: t.description.clone()
+          };
+          records.push(record);
+        }
+      }
+
+      records
   }
 
 }

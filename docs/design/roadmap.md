@@ -6,9 +6,10 @@
 - [x] Error Messages
 - [-] Parse Arguments
 - [x] Logging, Regex Parsing, Filtering, Reverse Ordering
-- [ ] Read Yaml File
-- [ ] Parse Currency, Accounts, Datetime
-- [ ] Gather Transactions
+- [x] Read Yaml File
+- [x] Parse Currency, Accounts, Datetime
+- [x] Flattern Transaction Records
+- [ ] Process Commands
 - [ ] Plotting
 - [ ] Colors
 - [ ] Receivables & Payables Module

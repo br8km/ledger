@@ -1,40 +1,32 @@
 extern crate thiserror;
 
 use std::io;
+use std::result;
 use thiserror::Error;
 
+
+pub type Result<T> = result::Result<T, Error>;
+
+
 #[derive(Error, Debug)]
-pub enum FileError {
+pub enum Error {
 
     #[error("Invalid File History Index {idx}, expected in range[0, {max}]")]
-    FileIndex { idx: usize, max: u8},
+    FileIndexError { idx: usize, max: u8},
 
-    #[error("Invalid Session History Index {idx}, expected in range[0, {max}]")]
-    SessionIndex { idx: usize, max: u8},
-
-    // Valid Config File Type: toml;
     // Valid Ledger File Type: yaml;
     #[error("Invalid File Type: (expected {expected:?}, got {found:?})")]
-    FileType {
+    FileTypeError {
         expected: String,
         found: String,
     },
 
     #[error("File Path Error")]
-    FilePath(#[from] io::Error),
+    FilePathError(#[from] io::Error),
     
     // config, currency, accounts, transactions parsing errors;
     #[error("File Format Error: {0}")]
-    FileFormat(String),
-
-    #[error("Unknown File Error")]
-    Unknown,
-
-}
-
-
-#[derive(Error, Debug)]
-pub enum ArgumentError {
+    FileFormatError(String),
 
     #[error("Invalid Argument: {0}")]
     InvalidArgument(String),
@@ -43,15 +35,16 @@ pub enum ArgumentError {
     MissingArgument(String),
 
     #[error("Argument Usage Error: (expected {expected:?}, got {found:?} )")]
-    SyntaxError {
+    BadSyntax {
         expected: String,
         found: String,
     },
 
-    #[error("Unknown Argument Error")]
+    #[error("Unknown Error")]
     Unknown,
 
 }
+
 
 /*
 

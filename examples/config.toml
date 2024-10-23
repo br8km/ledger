@@ -1,6 +1,0 @@
-decimal_number = 6  # default to 6 otherwise 12 for crypto;
-theme_color = "dark"  # options: `dark`, `light`, etc.;
-budget_alert = 80  # percent, default to 80%;
-budget_postpone = true  # unused budget last period transfer to next period within {year}, set to `off`|`false` to disable this feature;
-log_file = "ledger.log"
-history_limit = 10
