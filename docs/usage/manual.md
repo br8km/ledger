@@ -34,4 +34,4 @@
 
 
 - `Example`
-  - `outfile`, eg: `outfile={file_path}`, will create default example file with defined file path, or to executable path if this argument not present, eg: `<ledger.exe path>/example.yaml`;
+  - `file`, eg: `file={file_path}`, will create default example file with defined file path, or to executable path if this argument not present, eg: `<ledger.exe path>/example.yaml`;

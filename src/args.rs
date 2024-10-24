@@ -63,12 +63,15 @@ pub struct AdvancedArgs {
   pub file: String,
 
   /// group options, eg: {num}year|month|week|day;
+  #[arg(short, long)]
   pub group: Option<String>,
 
   /// recent options, eg: {num}year|month|week|day;
+  #[arg(short, long)]
   pub recent: Option<String>,
 
   /// period options, eg: {yyyy-mm-dd}-{yyyy-mm-dd}
+  #[arg(short, long)]
   pub period: Option<String>,
 
 }

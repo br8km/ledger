@@ -1,13 +1,16 @@
 #!allow[unused_imports, dead_code]
 
+use std::ops::Range;
+
 use log::info;
 use chrono::NaiveDate;
 use serde::{Serialize, Deserialize};
 
-use crate::{args::{AdvancedArgs, BasicArgs}, logger};
+use crate::args::{self, AdvancedArgs, BasicArgs, Command, LedgerArgs};
 // use rusty_money::{iso, Money};
 
-
+use crate::errors::Error;
+use crate::logger;
 
 #[derive(Debug, PartialEq, Clone, Serialize, Deserialize)]
 pub struct Config {
@@ -125,53 +128,52 @@ impl LedgerFile {
       records
   }
 
-  pub fn print_account (args: &BasicArgs) {
+  pub fn print_account (self, args: &BasicArgs) {
 
     // everything done, get filepath logged here
-    logger::init();
-    info!("{0}", args.file);
+    self.write_log(&args.file);
   }
 
 
-  pub fn print_balance (args: &AdvancedArgs) {
+  pub fn print_balance (self, args: &AdvancedArgs) {
 
 
     // everything done, get filepath logged here
-    logger::init();
-    info!("{0}", args.file);
+    self.write_log(&args.file);
   }
 
 
-  pub fn print_budget (args: &AdvancedArgs) {
+  pub fn print_budget (self, args: &AdvancedArgs) {
 
 
     // everything done, get filepath logged here
-    logger::init();
-    info!("{0}", args.file);
+    self.write_log(&args.file);
   }
 
 
   /// print out register
-  pub fn print_register (args: AdvancedArgs) {
+  pub fn print_register (self, args: AdvancedArgs) {
 
 
     // process register filtering logic
 
 
     // everything done, get filepath logged here
+    self.write_log(&args.file);
+
+  }
+
+  pub fn write_log(self, filepath: &str) {
     logger::init();
-    info!("{0}", args.file);
+    info!("{0}", filepath);
 
   }
 
   /// print out de-duplicated file history
-  pub fn print_history() {
+  pub fn print_history(self) {
     logger::init();
     let entries = logger::parsing();
     let entries = logger::filtering(entries);
-    // for entry in entries {
-    //   println!("{0} - {1}", entry.datetime, entry.filepath)
-    // }
     for index in 0..entries.len() {
       let entry = &entries[index];
       println!("<{0}> {1} - {2}", index, entry.datetime, entry.filepath)
@@ -181,24 +183,68 @@ impl LedgerFile {
 
 
   /// generate example.yaml file
-  pub fn generate_example(_outfile: &str) {
+  pub fn generate_example(self, _outfile: &str) {
 
   }
 
 
+  /// parse real filepath if is file index number
+  pub fn real_filepath (filepath: &str) -> String {
+    // check if file string is number in range(0, 9)
+    let fileindex = filepath.parse::<u8>();
+    match fileindex {
+      Ok(ok) => {
+        let r : Range<u8> = 0..10;
+        if r.contains(&ok) {
+          // get real file path here
+          let ok_usize = ok as usize;
+          logger::init();
+          let entries = logger::parsing();
+          let entries = logger::filtering(entries);
+          for index in 0..entries.len() {
+            if index == ok_usize {
+              let entry = &entries[index];
+              println!("{0}, {1}", entry.timestamp, entry.filepath);
+              return entry.filepath.to_owned();
+            }
+          }
+        }
 
-  /// parse filepath if file argument is file index number
-  pub fn parse_filepath_from_index_number () -> String {
-    panic!("not yet.")
+      },
+      
+      // Err(e) => println!("Not Valid FileIndex ({})", e), 
+      // Err(e) => Error::FileIndexError { idx: 0, max: 10 }
+      // Err(crate::errors::Error::FileIndexError { idx: 0, max: 10 }) => ()
+      Err(_e) => panic!("FileIndex Error!")
+    }  
+    // panic!("not FileIndex.")
+    return filepath.to_owned();
+
   }
 
 
   /// validate filepath exists
-  pub fn validate_filepath_exists(_filepath: &str) -> bool {
-    true
+  pub fn validate_filepath(filepath: &str) -> bool {
+    return std::path::Path::new(filepath).exists()
   }
 
 
+  pub fn run_command(self, args: LedgerArgs) {
+    println!("{:?}\n", args.command);
+    // let args = matches;
+    // match args.command {
+    //   Command::Account(_) => {
+    //     self.print_account(&args.command);
+    //   },
+    //   Command::Balance(_) => self.print_balance(&args),
+    //   Command::Budget(_) => self.print_budget(&args),
+    //   Command::Register(_) => self.print_account(),
+    //   Command::History => self.print_account(),
+    //   Command::Example(_) => self.print_account(),
+    //   Command::None => unreachable!()
+    // }
+
+  }
 
 
 
